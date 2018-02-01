@@ -1,60 +1,60 @@
 # MATH AND FORMATTING (34PTS TOTAL)
 
-#FORMATTING
+# FORMATTING
 
-#PROBLEM 1 (2pts)
-#Use {}.format() to print 0.000321192 in scientific notation to two decimals
+# PROBLEM 1 (2pts)
+# Use {}.format() to print 0.000321192 in scientific notation to two decimals
 print("{:.2e}".format(0.000321192))
 
-#PROBLEM 2 (2pts)
-#You get 8 out of 9 on a quiz.
-#Print 8/9 using {}.format() so that it appears as 88.9%
+# PROBLEM 2 (2pts)
+# You get 8 out of 9 on a quiz.
+# Print 8/9 using {}.format() so that it appears as 88.9%
 print("{:.1%}".format(8/9))
 
-#PROBLEM 3 (3pts)
-#Take the following program:
+# PROBLEM 3 (3pts)
+# Take the following program:
 
 score = 41237
 highscore = 1023407
 print("Score:      " + str(score) )
 print("High score: " + str(highscore) )
 
-#Which right now outputs:
-#Score:      41237
-#High score: 1023407
+# Which right now outputs:
+# Score:      41237
+# High score: 1023407
 
-#Use print formatting so that the output instead looks like:
-#Score:          41,237
-#High score:  1,023,407
-#Make sure the print formatting works for any integer from zero to nine million. Do not use any plus sign (+) in your code. 
-#You should only have two double quotes in each print statement.
+# Use print formatting so that the output instead looks like:
+# Score:          41,237
+# High score:  1,023,407
+# Make sure the print formatting works for any integer from zero to nine million. Do not use any plus sign (+) in your code.
+# You should only have two double quotes in each print statement.
 
 print("Score:      {:,}".format(score))
 print("High score: {:,}".format(highscore))
 
-#PROBLEM 4 (5 pts) 
-#Create a program that loops from 1 to 20 and lists the decimal equivalent of their inverse. 
-#Use print formatting to exactly match the following output:
-#1/1  = 1.0
-#1/2  = 0.5
-#1/3  = 0.333
-#1/4  = 0.25
-#1/5  = 0.2
-#1/6  = 0.167
-#1/7  = 0.143
-#1/8  = 0.125
-#1/9  = 0.111
-#1/10 = 0.1
-#1/11 = 0.0909
-#1/12 = 0.0833
-#1/13 = 0.0769
-#1/14 = 0.0714
-#1/15 = 0.0667
-#1/16 = 0.0625
-#1/17 = 0.0588
-#1/18 = 0.0556
-#1/19 = 0.0526
-#1/20 = 0.05
+# PROBLEM 4 (5 pts)
+# Create a program that loops from 1 to 20 and lists the decimal equivalent of their inverse.
+# Use print formatting to exactly match the following output:
+# 1/1  = 1.0
+# 1/2  = 0.5
+# 1/3  = 0.333
+# 1/4  = 0.25
+# 1/5  = 0.2
+# 1/6  = 0.167
+# 1/7  = 0.143
+# 1/8  = 0.125
+# 1/9  = 0.111
+# 1/10 = 0.1
+# 1/11 = 0.0909
+# 1/12 = 0.0833
+# 1/13 = 0.0769
+# 1/14 = 0.0714
+# 1/15 = 0.0667
+# 1/16 = 0.0625
+# 1/17 = 0.0588
+# 1/18 = 0.0556
+# 1/19 = 0.0526
+# 1/20 = 0.05
 
 for i in range(1, 21):
 
@@ -69,7 +69,7 @@ for i in range(1, 21):
     else:
         print("Missed {}".format(i))
 
-#PROBLEM 5 (From Math Class to Code - 5pts)
+# PROBLEM 5 (From Math Class to Code - 5pts)
 # Print the answer to the math question:
 # 3(60x^2 + 3x/9) + 2x - 4/3(x) - sqrt(x)
 # where x = 12.83
@@ -78,9 +78,9 @@ x = 12.83
 your_answer = 3*(60*x**2 + 3*x/9) + 2*x - 4/3*x - x**1/2  # Substitute your equation for the zero
 print(your_answer)
 
-#PROBLEM 2 (Wholesale Books - 5pts)
-#The cover price of a book is $27.95, but bookstores get a 50 percent discount.
-#Shipping costs $4 for the first copy and 75 cents for each additional copy.
+# PROBLEM 2 (Wholesale Books - 5pts)
+# The cover price of a book is $27.95, but bookstores get a 50 percent discount.
+# Shipping costs $4 for the first copy and 75 cents for each additional copy.
 # Calculate the total wholesale costs for 68 copies formatted (using {}.format()) to the nearest penny.
 
 copies = 68
@@ -90,7 +90,7 @@ shipping = 0.75*(copies - 1) + 4
 total = cover_price*(1 - discount)*copies + shipping
 print("{:.2f}".format(total))
 
-#PROBLEM 3 (What is this, the ACT? - 5pts)
+# PROBLEM 3 (What is this, the ACT? - 5pts)
 # You purchase eight chairs for your dining room.
 # You pay for the chairs plus sales tax at 9.5%
 # Make a program that prints the amount to the nearest penny using the variables below
