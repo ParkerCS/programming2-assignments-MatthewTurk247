@@ -1,3 +1,5 @@
+import random
+
 #LISTS (31PTS TOTAL)
 #In these exercises you should should use functions as needed.  All functions should have comments to describe their purpose.
 
@@ -6,6 +8,11 @@
 # a) Make a list of numbers from 1 to 100
 # b) Make a list of even numbers from 20 to 40
 # c) Make a list of squares from 1 to 100 (1 ** 2 to 100 ** 2)
+
+list_a = [i for i in range(1, 101)]
+print(list_a)
+intermed_list = [i for i in range(20, 41)]
+list_b = [i for i  in intermed_list if i%2 == 0]
 
 #PROBLEM 2 (8-ball - 5pts)
 # A magic 8-ball, when asked a question, provides a random answer from a list.
@@ -18,13 +25,20 @@ yes", "Most likely", "Outlook good", "Yes", "Signs point to yes",
 now", "Cannot predict now", "Concentrate and ask again", "Don ' t \
 count on it", "My reply is no", "My sources say no", "Outlook \
 not so good", "Very doubtful" ]
-
+def shake_eight_ball():
+    print(answer_list[random.randrange(len(answer_list))])
 
 # PROBLEM 3 (Shuffle - 5pts)
 # A playing card consists of a suit (Heart, Diamond, Club, Spade) and a value (2,3,4,5,6,7,8,9,10,J,Q,K,A).
 # Create a list of all possible playing cards, which is a deck.
 # Then create a function that shuffles the deck, producing a random order.
 
+suits = ["heart", "diamond", "club", "spade"]
+values = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
+deck = []
+for suit in suits:
+    for value in values:
+        deck.append("{} of {}s".format(value, suit))
 
 # PROBLEM 4 (Tic-Tac-Toe - 15pts)
 # Write a Tic-Tac-Toe program that allows two people to play the game against each other.
@@ -43,6 +57,134 @@ not so good", "Very doubtful" ]
 # pass to a function as an argument if the function needs it.
 # I also use a function opponent(), that takes the player as argument and returns
 # the opponent. I use that to switch players after each move.
+
+def all_same(items):
+    return all(i == items[0] for i in items)
+
+done = False
+is_p1_turn = True
+row1 = ["_" for i in range(3)]
+row2 = ["_" for i in range(3)]
+row3 = ["_" for i in range(3)]
+board = [row1, row2, row3]
+print(row1, row2, row3, sep="\n")
+
+def out_of_range(n):
+    return n > 3
+
+def check_winner():
+    global done
+
+    # logic to see if there's a horizontal winner
+    if all_same(row1) and row1[0] == "X":
+        print("Player one wins!")
+        done = True
+    elif all_same(row1) and row1[0] == "O":
+        print("Player two wins!")
+        done = True
+
+    if all_same(row2) and row2[0] == "X":
+        print("Player one wins!")
+        done = True
+    elif all_same(row2) and row2[0] == "O":
+        print("Player two wins!")
+        done = True
+
+    if all_same(row3) and row3[0] == "X":
+        print("Player one wins!")
+        done = True
+    elif all_same(row3) and row3[0] == "O":
+        print("Player two wins!")
+        done = True
+
+    # logic to see if there's a vertical winner
+
+    if row1[0] == "X" and row2[0] == "X" and row3[0] == "X":
+        print("Player one wins!")
+        done = True
+    elif row1[1] == "X" and row2[1] == "X" and row3[1] == "X":
+        print("Player one wins!")
+        done = True
+    elif row1[2] == "X" and row2[2] == "X" and row3[2] == "X":
+        print("Player one wins!")
+        done = True
+
+    if row1[0] == "O" and row2[0] == "O" and row3[0] == "O":
+        print("Player two wins!")
+        done = True
+    elif row1[1] == "O" and row2[1] == "O" and row3[1] == "O":
+        print("Player two wins!")
+        done = True
+    elif row1[2] == "O" and row2[2] == "O" and row3[2] == "O":
+        print("Player two wins!")
+        done = True
+
+    # logic to see if there's a diagonal winner
+
+    if row1[0] == "X" and row2[1] == "X" and row3[2] == "X":
+        print("Player one wins!")
+        done = True
+    elif row1[2] == "X" and row2[1] == "X" and row3[0] == "X":
+        print("Player one wins!")
+        done = True
+
+    if row1[0] == "O" and row2[1] == "O" and row3[2] == "O":
+        print("Player two wins!")
+        done = True
+    elif row1[2] == "O" and row2[1] == "O" and row3[0] == "O":
+        print("Player two wins!")
+        done = True
+
+def check_draw():
+    global done
+    if "_" not in row1 and "_" not in row2 and "_" not in row3:
+        print("Tie!")
+        done = True
+
+while not done:
+    if is_p1_turn:
+        print("Player one, choose a spot to mark. (1, 1) is the top left.")
+        x_component = int(input("Row (enter an integer): "))
+        y_component = int(input("Column (enter an integer): "))
+        # print(x_component, y_component)
+        # make changes based on x and y components given
+
+        # get_row_column
+        if x_component <= 3 and x_component >=1 and y_component <= 3 and y_component >= 1:
+            if board[x_component - 1][y_component - 1] == "_":
+                board[x_component - 1][y_component - 1] = "X"
+            else:
+                print("That is taken. Try again.")
+                is_p1_turn = not is_p1_turn
+        else:
+            print("Choose feasible numbers. Try again.")
+            is_p1_turn = not is_p1_turn
+
+    else:
+        print("Player one, choose a spot to mark. (1, 1) is the top left.")
+        x_component = int(input("Row (enter an integer): "))
+        y_component = int(input("Column (enter an integer): "))
+        # print(x_component, y_component)
+        # make changes based on x and y components given
+
+        if x_component <= 3 and x_component >= 1 and y_component <= 3 and y_component >= 1:
+            if board[x_component - 1][y_component - 1] == "_":
+                board[x_component - 1][y_component - 1] = "O"
+            else:
+                print("That is taken. Try again.")
+                is_p1_turn = not is_p1_turn
+        else:
+            print("Choose feasible numbers. Try again")
+            is_p1_turn = not is_p1_turn
+
+    print(row1, row2, row3, sep="\n")
+    is_p1_turn = not is_p1_turn
+
+    #check if there's a winner
+    check_winner()
+
+    # check draw
+    check_draw()
 
 # The main program will be something along the lines of (in pseudo-code):
 # display board
