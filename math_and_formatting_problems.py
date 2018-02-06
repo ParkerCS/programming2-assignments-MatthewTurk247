@@ -16,8 +16,8 @@ print("{:.1%}".format(8/9))
 
 score = 41237
 highscore = 1023407
-print("Score:      " + str(score) )
-print("High score: " + str(highscore) )
+print("Score:      " + str(score))
+print("High score: " + str(highscore))
 
 # Which right now outputs:
 # Score:      41237
