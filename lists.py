@@ -161,7 +161,7 @@ while not done:
             is_p1_turn = not is_p1_turn
 
     else:
-        print("Player one, choose a spot to mark. (1, 1) is the top left.")
+        print("Player two, choose a spot to mark. (1, 1) is the top left.")
         x_component = int(input("Row (enter an integer): "))
         y_component = int(input("Column (enter an integer): "))
         # print(x_component, y_component)
