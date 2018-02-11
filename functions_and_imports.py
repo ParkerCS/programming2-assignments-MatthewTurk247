@@ -33,7 +33,7 @@ def num_info(n1, n2, n3):
     :param n3:
     :return:
     '''
-    print("Minimum = {}, maximum = {}, and average = {}".format(min(n1, n2, n3), max(n1, n2, n3), (n1 + n2 + n3)/3))
+    print("Minimum = {}, maximum = {}, and average = {:.2f}".format(min(n1, n2, n3), max(n1, n2, n3), (n1 + n2 + n3)/3))
 
 # PROBLEM 4 (add me, multiply me - 4pts)
 # Make a function which takes in two integers and RETURNS their sum AND their product.
@@ -62,3 +62,5 @@ if __name__ == "__main__":
     num_info(3, 5, 1)
     import_me.login_user("Rowan", "badpassword123")
     print(product_sum(4, 6))
+
+# exceptions, recursion, mathplot library, numpi, bs4, spell check alice in wonderland, tkinter, desktop apps, libraries

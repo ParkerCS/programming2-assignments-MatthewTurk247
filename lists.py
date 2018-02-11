@@ -11,8 +11,8 @@ import random
 
 list_a = [i for i in range(1, 101)]
 print(list_a)
-intermed_list = [i for i in range(20, 41)]
-list_b = [i for i  in intermed_list if i%2 == 0]
+list_b = [i for i  in range(20, 41) if i%2 == 0]
+squares = [i**2 for i in range(1, 101)]
 
 #PROBLEM 2 (8-ball - 5pts)
 # A magic 8-ball, when asked a question, provides a random answer from a list.
