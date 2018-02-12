@@ -36,9 +36,20 @@ def shake_eight_ball():
 suits = ["heart", "diamond", "club", "spade"]
 values = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
 deck = []
+
+def shuffle_deck(d):
+    p = 1
+    while p <= 10:
+        for i in range(53):
+            d.append(d.pop(random.randrange(len(d))))
+        p += 1
+
 for suit in suits:
     for value in values:
         deck.append("{} of {}s".format(value, suit))
+
+shuffle_deck(deck)
+print(deck)
 
 # PROBLEM 4 (Tic-Tac-Toe - 15pts)
 # Write a Tic-Tac-Toe program that allows two people to play the game against each other.
