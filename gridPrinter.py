@@ -1,3 +1,5 @@
+import random
+
 '''
 Grid Printer Exercise
 Printing a Grid (adapted from Downey, “Think Python”, ex. 3.5)
@@ -26,6 +28,17 @@ plus = '+'
 minus = '-'
 You can also multiply strings:
 '+' * 10 ===> '++++++++++'
+
+'''
+
+for row in range(11):
+    if row % 5 != 0:
+        for column in range(1):
+            print("|            |            |")
+    else:
+        print("+" + " - "*4 + "+" + " - "*4 + "+")
+
+'''
 Part 2
 Making it more general
 Make it a function
@@ -56,6 +69,34 @@ print_grid(15) prints a larger grid:
 |               |               |
 |               |               |
 + - - - - - - - + - - - - - - - +
+'''
+
+'''def print_grid(n):
+    for row in range(n):
+        if row % 2*n != 0:
+            for column in range(n):
+                print("|" + " "*3*n + "|" + " "*3*n + "|")
+        else:
+            print("+" + " - " * n + "+" + " - " * n + "+")
+
+print_grid(4)'''
+
+def print_grid(n):
+    for row in range(round(n/4) - 1):
+        print("+", end="")
+        print(" - " * (round(n/8)), end="")
+        print("+", end="")
+        print(" - " * (round(n/8)), end="")
+        print("+")
+        print("|" + " " * round(n/2.5) + "|", end="")
+        print(" " * round(n / 2.5) + "|")
+    print("+", " - " * (round(n/8)), "+", " - " * round(n/8), "+", sep="")
+
+# searching and sorting
+
+print_grid(50)
+
+'''
 Part 3:
 Even more general...
 A function with two parameters
@@ -101,3 +142,45 @@ Another example: print_grid2(5,3):
 |       |       |       |       |       |
 + - - - + - - - + - - - + - - - + - - - +
 '''
+def print_grid2(x):
+    for row in range(x):
+        print()
+        if x % (row + 1) == 0:
+            print("+")
+        print("|")
+print_grid2(10)
+
+a = []
+for i in range(100):
+    rand_num = random.randrange(11)
+    if rand_num not in a:
+        a.append(rand_num)
+    if len(a) == 10:
+        break
+print(a)
+
+# calculate pi with Python (polygon with lots of sides and then do perimeter/d)
+# recursive function (function calls itself)
+# search algorights
+# NXT slice and dice was how I got into programming
+# robotics
+# where's the prime
+
+def print_grid3(width, cells):
+    for i in range(width):
+            for j in range(cells):
+                print("+", "- " * width, end="")
+                print("", end="")
+            print("+")
+
+            for i in range(width):
+                for j in range(cells):
+                    print("|", end=" ")
+                    print("  " * width, end="")
+                print("|")
+    for j in range(cells):
+        print("+", "- " * width, end="")
+        print("", end="")
+    print("+")
+
+print_grid3(5, 5)
