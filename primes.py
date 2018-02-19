@@ -1,4 +1,4 @@
-def find_primes_in(interval=100):
+def find_primes_in(interval):
     potential_primes = [x for x in range(3, interval + 1) if x % 2 != 0 and x >= 2]
     if interval >= 2:
         potential_primes.insert(0, 2)
