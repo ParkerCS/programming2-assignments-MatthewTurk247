@@ -12,17 +12,68 @@ def split_line(line):
 # word in the provided dictionary.  If there are more
 # than one longest word, print them all.  (read the file line by line to accomplish this task)
 
+dictionary = open('search_files/dictionary.txt')
+all_positions = []
+all_words = []
+position = 0
+for word in dictionary:
+    print(len(word))
+    all_positions.append(len(word))
+    all_words.append(word)
+    position += 1
+
+print(max(all_positions))
+
+dictionary.close()
+dictionary = open('search_files/dictionary.txt')
+for word in dictionary:
+    if len(word) == 29:
+        print("Longest word:", word)
+
 #2.  (7pts)  Write code which finds
 #  The total word count AND average word length of "AliceInWonderLand.txt"
 
-
+word_count = 0
+letter_count = 0
+alice = open('search_files/AliceInWonderLand.txt')
+for line in alice:
+    for word in split_line(line):
+        word_count += 1
+        letter_count += len(word)
+print("Word count:", word_count)
+print("Average word:", letter_count/word_count, "letters")
 
 # CHOOSE ONE OF THE FOLLOWING TWO PROBLEMS
 
 #3 (13pts)  How many times does "Cheshire" occur in"AliceInWonderLand.txt"?
 # How many times does "Cat" occur?
 # How many times does "Cheshire" immediately followed by "Cat" occur?
+times_cat_occurs = 0
+for line in alice:
+    for word in split_line(line):
+        if word == "Cat".upper():
+            times_cat_occurs += 1
+print(times_cat_occurs)
 
+alice.close()
+
+alice = open('search_files/AliceInWonderLand.txt')
+
+words = []
+for line in alice:
+    for word in split_line(line):
+        words.append(word)
+
+# [y for y in [split_line(line)] for line in alice]
+
+cheshire_cat = 0
+
+for i in range(len(words)):
+    print(words[i - 1], words[i])
+    if words[i - 1].upper() == "CHESHIRE" and words[i].upper() == "CAT":
+        cheshire_cat += 1
+
+print(cheshire_cat)
 
 #### OR #####
 
@@ -34,7 +85,4 @@ def split_line(line):
 
 # CHALLNENGE PROBLEM  (for fun, not for credit).  
 #  What words appear in the text of "Alice in Wonderland" that DO NOT occur in "Alice Through the Looking Glass".  Make a list.  You can substitute this for any of the above problems.
-
-
-
 
