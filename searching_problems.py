@@ -73,7 +73,7 @@ for i in range(len(words)):
     if words[i - 1].upper() == "CHESHIRE" and words[i].upper() == "CAT":
         cheshire_cat += 1
 
-print(cheshire_cat)
+print('\"Cheshire Cat\" appears', cheshire_cat, 'times')
 
 #### OR #####
 
@@ -86,8 +86,6 @@ print(cheshire_cat)
 # CHALLNENGE PROBLEM  (for fun, not for credit).  
 #  What words appear in the text of "Alice in Wonderland" that DO NOT occur in "Alice Through the Looking Glass".  Make a list.  You can substitute this for any of the above problems.
 def binary_search(key, arr):
-    for i in range(20):
-        print(2 ** i)
 
     lower_bound = 0
     upper_bound = len(arr) - 1
@@ -111,10 +109,13 @@ def binary_search(key, arr):
 
 looking_glass = open('search_files/AliceThroughTheLookingGlass.txt')
 looking_words = []
-for line in looking_glass:
-    looking_words.append(split_line(line))
 
-for word in looking_words:
-    binary_search(word, words)
+
+for line in looking_glass:
+    for word in split_line(line):
+        looking_words.append(word.upper())
+
+for word in words:
+    binary_search(word, looking_words)
 
 # binary search each unique word in the array if in alice through the looking glass
