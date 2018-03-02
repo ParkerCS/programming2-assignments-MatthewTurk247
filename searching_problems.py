@@ -85,4 +85,36 @@ print(cheshire_cat)
 
 # CHALLNENGE PROBLEM  (for fun, not for credit).  
 #  What words appear in the text of "Alice in Wonderland" that DO NOT occur in "Alice Through the Looking Glass".  Make a list.  You can substitute this for any of the above problems.
+def binary_search(key, arr):
+    for i in range(20):
+        print(2 ** i)
 
+    lower_bound = 0
+    upper_bound = len(arr) - 1
+
+    found = False
+    middle_pos = 0
+
+    while not found and lower_bound <= upper_bound:
+        middle_pos = (upper_bound - lower_bound) // 2
+        if arr[middle_pos] < key:
+            lower_bound = middle_pos + 1
+        elif arr[middle_pos] > key:
+            upper_bound = middle_pos - 1
+        else:
+            found = True
+
+    if found:
+        print("Found", key, "at position", middle_pos)
+    else:
+        print(key, "not found")
+
+looking_glass = open('search_files/AliceThroughTheLookingGlass.txt')
+looking_words = []
+for line in looking_glass:
+    looking_words.append(split_line(line))
+
+for word in looking_words:
+    binary_search(word, words)
+
+# binary search each unique word in the array if in alice through the looking glass
