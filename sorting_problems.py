@@ -17,13 +17,13 @@ def selection_sort(l):
     for cur_pos in range(len(l)):
         min_pos = cur_pos
         ss_outer_count += 1
-        print('ss outer:', ss_outer_count)
         for scan_pos in range(cur_pos + 1, len(l)):
             if l[scan_pos] < l[min_pos]:
                 min_pos = scan_pos
-                ss_inner_count += 1
-                print('ss inner:', ss_inner_count)
+            ss_inner_count += 1
         l[cur_pos], l[min_pos] = l[min_pos], l[cur_pos]
+    print('selection sort outer:', ss_outer_count)
+    print('selection sort inner:', ss_inner_count)
     return l
 
 print(selection_sort(sort_me))
@@ -41,16 +41,15 @@ def insertion_sort(l):
         key_value = l[key_pos]
         scan_pos = key_pos - 1  # look to the dancer on the left
         is_outer_count += 1
-        print('is outer:', is_outer_count)
-        print(is_outer_count)
         while (scan_pos >= 0) and (l[scan_pos] > key_value):
             l[scan_pos + 1] = l[scan_pos]
             scan_pos -= 1
             is_inner_count += 1
-            print('is inner:', is_inner_count)
 
         # now everything is shifted to make room for the key_value
         l[scan_pos + 1] = key_value
+    print('insertion sort outer:', is_outer_count)
+    print('insertion sort inner:', is_inner_count)
     return l
 
 print(insertion_sort(sort_me2))
