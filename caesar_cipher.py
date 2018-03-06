@@ -5,9 +5,7 @@ alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
 sentence = 'Qexxlia Xyvo ampp riziv kix xlmw sri. Lelele.'.upper()
 
 for character in sentence:
-    if character == ' ' or character == ".":
-        pass
+    if character == ' ' or character == '.':
+        print(character, end='')
     else:
-        for i in range(27):
-            print(alphabet[alphabet.index(character) + i], end='')
-        print()
+        print(alphabet[alphabet.index(character) - 2], end='')
