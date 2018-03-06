@@ -1,4 +1,6 @@
 # Sorting problems (28pts)
+import math
+import re
 
 # Problem 1 - Value Swap (2pts)
 # Swap the values 18 and 38 in the list below
@@ -86,3 +88,29 @@ print(selection_sort(sort_me4))
 #  Feel free to use either sorting method to accomplish this.  You can make a function, but it is not required.
 # This is designed to test your understanding of the sort by applying it to slightly more messy list.
 # Solving MALFORMED PROBLEMS leads to deeper understanding.  Good luck.
+
+def split_line(line):
+    return re.findall('[A-Za-z]+(?:\'[A-Za-z]+)?', line)
+
+a = []
+file = open('files/nba_scoring_leaders.txt')
+for line in file:
+    a.append(line.split())
+
+for i in range(len(a)):
+    for j in range(len(a[i])):
+        # print(j.strip())
+        print('ewfewf', a[i][j].strip())
+        a[i][j] = a[i][j].strip()
+
+scores = []
+names = []
+for f in range(len(a)):
+    scores.append(a[f][2])
+    names.append(a[f][0] + ' ' + a[f][1])
+
+print(scores)
+sorted_scores = selection_sort(scores)
+
+# 1st base
+# print(a)
