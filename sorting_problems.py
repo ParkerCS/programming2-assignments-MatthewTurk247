@@ -110,7 +110,21 @@ for f in range(len(a)):
     names.append(a[f][0] + ' ' + a[f][1])
 
 print(scores)
-sorted_scores = selection_sort(scores)
+
+for cur_pos in range(len(scores)):
+    min_pos = cur_pos
+    for scan_pos in range(cur_pos + 1, len(scores)):
+        if scores[scan_pos] < scores[min_pos]:
+            min_pos = scan_pos
+    scores[cur_pos], scores[min_pos], names[cur_pos], names[min_pos] = scores[min_pos], scores[cur_pos], names[min_pos], names[cur_pos]
+
+scores.reverse()
+names.reverse()
+
+print('--- ALL TIME NBA SCORING LIST ---')
+
+for n in range(len(names)):
+    print(names[n], scores[n], 'points')
 
 # 1st base
 # print(a)
