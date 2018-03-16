@@ -80,7 +80,7 @@ Note:  The Koch snowflake shows step by step building of the fractal.
 '''
 
 '''
-The relationship between the two triangles are that if you shade in all the odd numbers in Pascal's Triangle in one
+The relationship between the two triangles is that if you shade in all the odd numbers in Pascal's Triangle in one
 color and leave the even numbers in another color, it makes Sierpinski's Triangle. No wonder I got them mixed up!
 —Matthew
 '''
@@ -134,16 +134,12 @@ pen.width(2)
 pen.begin_fill()
 def custom_fractal(length, depth):
     if depth > 0:
-        custom_fractal(length / 3, depth - 1)
-        pen.right(120)
-        custom_fractal(length / 3, depth - 1)
-        pen.left(180)
-        custom_fractal(length / 3, depth - 1)
-        pen.right(120)
-        custom_fractal(length / 3, depth - 1)
-    else:
-        pen.forward(length)
+        for i in range(6):
+            pen.forward(length)
+            custom_fractal(length // 3, depth - 1)
+            pen.backward(length)
+            pen.left(60)
 
-custom_fractal(10000, 4)
+custom_fractal(200, 4)
 
 my_screen.exitonclick()
