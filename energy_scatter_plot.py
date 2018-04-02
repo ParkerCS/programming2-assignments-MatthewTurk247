@@ -51,7 +51,17 @@ names = []
 square_footage = []
 output = []
 
-data.sort(key=lambda x: x[21]) # sorts the data by GHG intensity
+# look in 21 and delete the blanks
+
+# for i in range(len(data[21])):
+#     try:
+#         data[21][i] = int(data[21][i])
+#     except:
+#         data[21][i] = 0
+
+
+data = [x for x in data if x[21] != ""]
+data.sort(key=lambda x: float(x[21])) # sorts the data by GHG intensity
 
 for i in range(len(data)):
     try:
@@ -72,20 +82,38 @@ print(len(square_footage), len(output))
 products = lambda x, y: x*y
 print(products(9, 8))
 
-plt.figure(1, figsize=(8, 5))
-m, b = np.polyfit(square_footage, output, 1) # 1 for linear (returns m and b)
-x = [0, 100]
-y = [m*pt + b for pt in x]
-plt.plot(x, y)
-print(m, b)
-plt.scatter(square_footage, output)
+plt.figure(1, figsize=(12, 7), facecolor='lightslategray')
+
+def best_fit(X, Y):
+
+    xbar = sum(X)/len(X)
+    ybar = sum(Y)/len(Y)
+    n = len(X) # or len(Y)
+
+    numer = sum([xi*yi for xi,yi in zip(X, Y)]) - n * xbar * ybar
+    denum = sum([xi**2 for xi in X]) - n * xbar**2
+
+    b = numer / denum
+    a = ybar - b * xbar
+
+    print('best fit line:\ny = {:.2f} + {:.2f}x'.format(a, b))
+
+    return a, b
+
+# solution
+a, b = best_fit(square_footage, output)
+
+yfit = [a + b * xi for xi in square_footage]
+plt.plot(square_footage, yfit)
+
+plt.scatter(square_footage, output, alpha=0.5)
 
 # top 10% is 39 schools
 
-for i in range(5):
+for i in range(1):
     plt.annotate(names[i], xy=(square_footage[i], output[i]))
 
-for i in range(5):
+for i in range(2):
     plt.annotate(names[-i], xy=(square_footage[-i], output[-i]))
 
 parker_index = names.index("Francis W Parker School")
@@ -95,23 +123,32 @@ plt.annotate(names[parker_index], xy=(square_footage[parker_index], output[parke
 
 # color the dots
 green = [names[x] for x in range(40)]
+green_sq = [square_footage[x] for x in range(40)]
+green_output = [output[x] for x in range(40)]
 print(green)
 red = [names[-x] for x in range(40)]
+red_sq = [square_footage[-x] for x in range(40)]
+red_output = [output[-x] for x in range(40)]
 print(red)
 
+plt.scatter(green_sq, green_output, color='green', alpha=0.5)
+plt.scatter(red_sq, red_output, color='red', alpha=0.5)
+plt.scatter([square_footage[0]], [output[0]], color='green')
+
+'''
 for i in range(len(green)):
     if i < 10:
-        plt.annotate(green[i], xy=(square_footage[i], output[i]), color="green")
+        plt.annotate(green[i], xy=(square_footage[i], output[i]), color="green", alpha=0.5)
     else:
-        plt.annotate('', xy=(square_footage[i], output[i]), color="green")
+        plt.annotate('', xy=(square_footage[i], output[i]), color="green", alpha=0.5)
 
 for i in range(len(red)):
     if i < 10:
-        plt.annotate(red[i], xy=(square_footage[i], output[i]), color="red")
+        plt.annotate(red[i], xy=(square_footage[i], output[i]), color="red", alpha=0.5)
     else:
-        plt.annotate('', xy=(square_footage[i], output[i]), color="red")
-
-plt.title("Chicago Schools Stuff")
+        plt.annotate('', xy=(square_footage[i], output[i]), color="red", alpha=0.5)
+'''
+plt.title("Efficiency of Schools in Chicago", fontsize=20)
 plt.ylabel("CO2 Output in metric tons")
 plt.xlabel("Square footage (mi^2)")
 plt.show()
