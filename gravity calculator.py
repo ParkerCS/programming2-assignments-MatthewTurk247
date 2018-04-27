@@ -84,7 +84,7 @@ class Window(QWidget):
             mass2 = float(self.side2_value.text())
             r = float(self.separation_value.text())
             force = G*mass1*mass2/r/r
-            self.answer_value.setText(str(force) + " Newtons")
+            self.answer_value.setText(str('{:.4e}'.format(force)) + " Newtons")
         except ZeroDivisionError:
             self.answer_value.setText("Separation of 0 not allowed")
         except ValueError:
